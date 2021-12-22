@@ -3,7 +3,12 @@ import styled from 'styled-components';
 export const HomePageGrid = styled.div`
   display: grid;
   gap: 2rem;
-  grid-template-columns: repeat(2, minmax(auto, 1fr));
+  --columns: 2;
+  grid-template-columns: repeat(var(--columns), minmax(auto, 1fr));
+
+  @media (max-width: 800px) {
+    --columns: 1;
+  }
 `;
 
 export const ItemsGrid = styled.div`
@@ -12,6 +17,7 @@ export const ItemsGrid = styled.div`
   grid-template-columns: 1fr 1fr;
 `;
 
+// Single Grid Item (for home page)
 export const ItemStyles = styled.div`
   position: relative;
   text-align: center;
@@ -23,9 +29,13 @@ export const ItemStyles = styled.div`
 
   p {
     position: absolute;
+    top: 0;
     left: 0;
     width: 100%;
-    transform: rotate(-2deg) translateY(-140%);
+    margin: 0;
+    font-size: 2rem;
+    font-size: clamp(12px, 5vw, 20px);
+    transform: rotate(-2deg) translateY(-10px);
   }
 
   .mark {
